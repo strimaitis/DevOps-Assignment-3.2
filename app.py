@@ -1,10 +1,19 @@
 from flask import Flask, jsonify
+from urllib.request import urlopen
+import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return jsonify(message="This is the main page")
+    return jsonify(message="Welcome, enter /pokedex into the base URL to see list of Pokemon")
+
+@app.route('/pokedex')
+def pokedex():
+    url = "https://pokeapi.co/api/v2/pokemon/"
+    response = urlopen(url)
+    data_json = json.loads(response.read())
+    return jsonify(message="{}".format(data_json))
 
 @app.route('/about')
 def about():
