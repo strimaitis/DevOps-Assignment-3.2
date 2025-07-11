@@ -18,10 +18,9 @@ pipeline {
 	        steps {
 	            sh 'python --version'
 	            sh 'python -m venv .venv'
-	            sh 'ls'
                 sh '''
 . .venv/bin/activate
-pip install pytest
+pip install -r requirements.txt
 pytest
 '''
 	        }
