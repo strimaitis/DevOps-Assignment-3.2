@@ -25,5 +25,5 @@ def multiply(x, y):
     return jsonify(result=result)
 
 if __name__ == '__main__':
-    print("Testing for SCM polling")
+    print("Testing for SCM polling 2")
     app.run(debug=True)
