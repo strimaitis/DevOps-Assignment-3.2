@@ -22,6 +22,7 @@ pipeline {
                 sh '''
 . .venv/bin/activate
 pip install pytest
+pytest
 '''
 	        }
 	    }
