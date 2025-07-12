@@ -24,9 +24,10 @@ def pokedex():
     Args: N/A
     """
     url = "https://pokeapi.co/api/v2/pokemon/"
-    response = urlopen(url)
-    data_json = json.loads(response.read())
-    return jsonify(message=f"{data_json}")
+    with urlopen(url) as response:
+        read_response = response.read()
+        data_json = json.loads(read_response)
+        return jsonify(message=f"{data_json}")
 
 @app.route('/about')
 def about():
