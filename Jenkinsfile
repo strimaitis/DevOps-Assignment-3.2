@@ -1,14 +1,13 @@
 pipeline {
     agent none
 	stages {
-	    stage('Hello World') {
+	    stage('Build') {
 	        agent {
 	            docker { image 'node:16-alpine' }
 	        }
 	        steps {
-	            echo 'Hello World'
+	            echo 'Testing the application'
 	            sh 'node --version'
-	            sh 'ls'
 	        }
 	    }
 	    stage('Test') {
@@ -18,12 +17,12 @@ pipeline {
 	        steps {
 	            sh 'python --version'
 	            sh 'python -m venv .venv'
-                sh '''
-. .venv/bin/activate
-pip install -r requirements.txt
-pytest
-pylint app.py
-'''
+		    sh '''
+  		    . .venv/bin/activate
+  		    pip install -r requirements.txt
+		    pytest
+		    pylint app.py
+		    '''
 	        }
 	    }
 	}
